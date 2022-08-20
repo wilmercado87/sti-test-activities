@@ -1,0 +1,43 @@
+<form [formGroup]="saveForm" novalidate>
+  <div class="container text-center">
+    <div class="row">
+      <div class="col">
+        <h2>NUEVA ACTIVIDAD</h2>
+      </div>
+    </div>
+
+    <div class="mb-3 row">
+      <label for="name" class="col-sm-2 col-form-label">Nombre</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="name" formControlName="name" placeholder="Ingrese el nombre de la actividad">
+      <mat-error *ngIf="saveForm.controls['name'].invalid && (saveForm.controls['name'].dirty || saveForm.controls['name'].touched)">El nombre de la actividad es requerida</mat-error>
+      </div>
+    </div>
+
+    <div class="mb-3 row">
+      <label for="dateEstimated" class="col-sm-2 col-form-label">Fecha y hora estimada</label>
+      <div class="col-sm-10">
+        <input class="textbox-n form-control" [min]="currentDate" type="text" onfocus="(this.type='datetime-local')" onblur="(this.type='text')" id="dateEstimated" formControlName="dateEstimated" placeholder="Ingrese la fecha y hora estimada">
+        <mat-error *ngIf="saveForm.controls['dateEstimated'].invalid && (saveForm.controls['dateEstimated'].dirty || saveForm.controls['dateEstimated'].touched)">La fecha y hora estimada es requerida</mat-error>
+      </div>
+    </div>
+
+    <div class="mb-3 row">
+      <label for="asigned" class="col-sm-2 col-form-label">Asignado</label>
+      <div class="col-sm-10">
+        <mat-select class="form-control" id="asigned" formControlName="asigned" placeholder="Seleccione el empleado">
+          <mat-option *ngFor="let item of employees" [value]="item">{{item.name}}</mat-option>
+        </mat-select>
+        <mat-error *ngIf="saveForm.controls['asigned'].invalid && (saveForm.controls['asigned'].dirty || saveForm.controls['asigned'].touched)">Debe asignar un empleado</mat-error>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <button type="button" class="btn btn-secondary" (click)="saveActivity()" [disabled]="saveForm.invalid">Guardar</button>
+      </div>
+    </div>
+
+  </div>
+  </form>
+
