@@ -1,2 +1,2 @@
 # sti-test-activities
-Admisnistracion de actividades - front end test todosistemas
+front end Administracion de actividades - test todosistemas
